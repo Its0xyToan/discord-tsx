@@ -183,7 +183,7 @@ __metadata:
     "@types/node": "npm:^22.15.30"
     typescript: "npm:^5.8.3"
   bin:
-    discord-tsx-postbuild: ./dist/scripts/postbuild.js
+    discord-tsx-postbuild: dist/scripts/postbuild.js
   languageName: unknown
   linkType: soft
 
