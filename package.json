@@ -1,6 +1,6 @@
 {
   "name": "discord-tsx",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Represent Discord Embeds and Components using tsx instead of builders (slow) or json (unreadable)",
   "license": "MIT",
   "keywords": [
