@@ -1,0 +1,15 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "rootDir": "..",
+    "types": [],
+    "baseUrl": "..",
+    "paths": {
+      "discord-tsx": ["./src/index.ts"],
+      "discord-tsx/jsx-runtime": ["./src/jsx-runtime.ts"],
+      "discord-tsx/jsx-dev-runtime": ["./src/jsx-dev-runtime.ts"]
+    }
+  },
+  "include": ["./**/*.ts", "./**/*.tsx"]
+}

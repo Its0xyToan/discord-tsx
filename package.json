@@ -1,0 +1,69 @@
+{
+  "name": "discord-tsx",
+  "version": "0.1.0",
+  "description": "Represent Discord Embeds and Components using tsx instead of builders (slow) or json (unreadable)",
+  "license": "MIT",
+  "keywords": [
+    "discord",
+    "discord-js",
+    "tsx",
+    "jsx",
+    "embed",
+    "components"
+  ],
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./jsx-runtime": {
+      "types": "./dist/jsx-runtime.d.ts",
+      "import": "./dist/jsx-runtime.js"
+    },
+    "./jsx-dev-runtime": {
+      "types": "./dist/jsx-dev-runtime.d.ts",
+      "import": "./dist/jsx-dev-runtime.js"
+    },
+    "./postbuild": {
+      "types": "./dist/scripts/postbuild.d.ts",
+      "import": "./dist/scripts/postbuild.js"
+    }
+  },
+  "bin": {
+    "discord-tsx-postbuild": "./dist/scripts/postbuild.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "clean": "node -e \"import('node:fs/promises').then(fs=>fs.rm('dist',{recursive:true,force:true}))\"",
+    "build": "tsc -p tsconfig.json",
+    "postbuild": "node ./dist/scripts/postbuild.js ./dist",
+    "prepack": "yarn clean && yarn build",
+    "check": "tsc -p tsconfig.json --noEmit",
+    "examples:check": "tsc -p examples/tsconfig.json --noEmit",
+    "examples:build": "yarn build && tsc -p examples/tsconfig.build.json",
+    "examples:runtime": "yarn examples:build && node ./examples/run-comparison.mjs",
+    "examples:postbuild": "yarn examples:build && node ./dist/scripts/postbuild.js ./examples/dist && node ./examples/run-comparison.mjs",
+    "test": "yarn build && node --test tests/*.test.mjs",
+    "test:runtime": "yarn build && node --test tests/runtime.test.mjs",
+    "test:build": "yarn build && node --test tests/postbuild.test.mjs"
+  },
+  "dependencies": {
+    "@babel/generator": "^7.28.0",
+    "@babel/parser": "^7.28.0",
+    "@babel/traverse": "^7.28.0",
+    "@babel/types": "^7.28.0"
+  },
+  "devDependencies": {
+    "@types/babel__generator": "^7.27.0",
+    "@types/babel__traverse": "^7.28.0",
+    "@types/node": "^22.15.30",
+    "typescript": "^5.8.3"
+  },
+  "packageManager": "yarn@4.9.2"
+}
