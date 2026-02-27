@@ -1,5 +1,5 @@
 {
-  "name": "discord-tsx",
+  "name": "discord-tsx-builder",
   "version": "1.0.1",
   "description": "Represent Discord Embeds and Components using tsx instead of builders (slow) or json (unreadable)",
   "license": "MIT",
@@ -34,7 +34,7 @@
     }
   },
   "bin": {
-    "discord-tsx-postbuild": "dist/scripts/postbuild.js"
+    "discord-tsx-builder-postbuild": "dist/scripts/postbuild.js"
   },
   "files": [
     "dist"

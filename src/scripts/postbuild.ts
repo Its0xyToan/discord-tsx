@@ -54,7 +54,7 @@ const SELECT_TAGS = new Set([
 const INTERACTIVE_TAGS = new Set(["Button", ...SELECT_TAGS]);
 
 function hasDiscordRuntimeImport(source: string): boolean {
-  return source === "discord-tsx/jsx-runtime" || source.endsWith("/discord-tsx/jsx-runtime");
+  return source === "discord-tsx-builder/jsx-runtime" || source.endsWith("/discord-tsx-builder/jsx-runtime");
 }
 
 function collectState(program: t.Program): TransformState {
@@ -66,7 +66,7 @@ function collectState(program: t.Program): TransformState {
       continue;
     }
 
-    if (node.source.value === "discord-tsx") {
+    if (node.source.value === "discord-tsx-builder") {
       for (const specifier of node.specifiers) {
         if (t.isImportSpecifier(specifier) && t.isIdentifier(specifier.imported)) {
           tagLocals.set(specifier.local.name, specifier.imported.name);
@@ -940,7 +940,7 @@ export async function runPostbuild(targetPath: string): Promise<void> {
       throw new Error(`postbuild transform failed for ${filePath}: ${reason}`);
     }
   }
-  process.stdout.write(`[discord-tsx] transformed ${changed}/${files.length} JavaScript files.\n`);
+  process.stdout.write(`[discord-tsx-builder] transformed ${changed}/${files.length} JavaScript files.\n`);
 }
 
 async function main(): Promise<void> {

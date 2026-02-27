@@ -1,7 +1,7 @@
 import { renderRoot, type DiscordTsxElement } from "./runtime.js";
 import type { DiscordTagComponent } from "./tags.js";
 
-export const Fragment = Symbol.for("discord-tsx.fragment");
+export const Fragment = Symbol.for("discord-tsx-builder.fragment");
 
 type JsxType = DiscordTagComponent<unknown> | ((props: Record<string, unknown>) => unknown) | typeof Fragment;
 
@@ -36,7 +36,7 @@ function baseCreateElement(
     return type(normalizedProps);
   }
 
-  throw new Error("Invalid JSX tag passed to discord-tsx runtime.");
+  throw new Error("Invalid JSX tag passed to discord-tsx-builder runtime.");
 }
 
 export function jsx(type: JsxType, props: Record<string, unknown> | null, key?: unknown): unknown {

@@ -7,11 +7,11 @@ import test from "node:test";
 import { runPostbuild } from "../dist/scripts/postbuild.js";
 
 test("postbuild: rewrites compiled JSX calls to plain payload objects", async () => {
-  const tempDir = await mkdtemp(path.join(os.tmpdir(), "discord-tsx-postbuild-"));
+  const tempDir = await mkdtemp(path.join(os.tmpdir(), "discord-tsx-builder-postbuild-"));
   const inputFile = path.join(tempDir, "fixture.js");
 
-  const compiledLikeInput = `import { jsx as _jsx, jsxs as _jsxs } from "discord-tsx/jsx-runtime";
-import { DiscordEmbed, Description, DiscordComponent, Text } from "discord-tsx";
+  const compiledLikeInput = `import { jsx as _jsx, jsxs as _jsxs } from "discord-tsx-builder/jsx-runtime";
+import { DiscordEmbed, Description, DiscordComponent, Text } from "discord-tsx-builder";
 const name = "World";
 export const embed = _jsx(DiscordEmbed, {
   color: "#ffffff",

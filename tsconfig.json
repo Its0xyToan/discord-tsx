@@ -12,7 +12,7 @@
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "jsx": "react-jsx",
-    "jsxImportSource": "discord-tsx",
+    "jsxImportSource": "discord-tsx-builder",
     "outDir": "dist",
     "rootDir": "src",
     "verbatimModuleSyntax": true

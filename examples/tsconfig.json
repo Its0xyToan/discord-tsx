@@ -6,9 +6,9 @@
     "types": [],
     "baseUrl": "..",
     "paths": {
-      "discord-tsx": ["./src/index.ts"],
-      "discord-tsx/jsx-runtime": ["./src/jsx-runtime.ts"],
-      "discord-tsx/jsx-dev-runtime": ["./src/jsx-dev-runtime.ts"]
+      "discord-tsx-builder": ["./src/index.ts"],
+      "discord-tsx-builder/jsx-runtime": ["./src/jsx-runtime.ts"],
+      "discord-tsx-builder/jsx-dev-runtime": ["./src/jsx-dev-runtime.ts"]
     }
   },
   "include": ["./**/*.ts", "./**/*.tsx"]

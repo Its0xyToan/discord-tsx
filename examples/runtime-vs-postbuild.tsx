@@ -1,5 +1,5 @@
 /* @jsxRuntime automatic */
-/* @jsxImportSource discord-tsx */
+/* @jsxImportSource discord-tsx-builder */
 
 import {
   ActionRow,
@@ -20,7 +20,7 @@ import {
   Text,
   Thumbnail,
   Title
-} from "discord-tsx";
+} from "discord-tsx-builder";
 
 const name = "World";
 

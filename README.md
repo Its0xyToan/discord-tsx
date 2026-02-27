@@ -1,4 +1,4 @@
-# discord-tsx
+# discord-tsx-builder
 
 ![alt text](./assets/banner.png "DiscordTsx Banner")
 
@@ -7,24 +7,24 @@ Represent Discord Embeds and Components using TSX instead of raw JSON or long bu
 ## Install
 
 ```bash
-npm install discord-tsx
+npm install discord-tsx-builder
 ```
 
 ```bash
-pnpm add discord-tsx
+pnpm add discord-tsx-builder
 ```
 
 ```bash
-yarn add discord-tsx
+yarn add discord-tsx-builder
 ```
 
 ## Use in another project
 
-`discord-tsx` is a normal npm library. In your own project:
+`discord-tsx-builder` is a normal npm library. In your own project:
 
-1. Install `discord-tsx`
+1. Install `discord-tsx-builder`
 2. Set TS JSX runtime config
-3. Write TSX with `discord-tsx` tags
+3. Write TSX with `discord-tsx-builder` tags
 4. Recommended: run postbuild transform to bake payload objects into built JS
 
 ### TS config
@@ -33,20 +33,20 @@ yarn add discord-tsx
 {
   "compilerOptions": {
     "jsx": "react-jsx",
-    "jsxImportSource": "discord-tsx",
+    "jsxImportSource": "discord-tsx-builder",
     "moduleResolution": "nodenext"
   }
 }
 ```
 
-`moduleResolution: "nodenext"` (or `node16`/`bundler`) is important so `discord-tsx/jsx-runtime` resolves correctly.
+`moduleResolution: "nodenext"` (or `node16`/`bundler`) is important so `discord-tsx-builder/jsx-runtime` resolves correctly.
 
 ## Postbuild mode (Highly Recommended)
 
 After `tsc`, run the transformer:
 
 ```bash
-discord-tsx-postbuild ./dist
+discord-tsx-builder-postbuild ./dist
 ```
 
 This rewrites compiled `_jsx/_jsxs` trees rooted at `<DiscordEmbed>` / `<DiscordComponent>` into object literals directly in emitted JS.
@@ -65,7 +65,7 @@ Suggested scripts in consumer project:
 {
   "scripts": {
     "build": "tsc",
-    "postbuild": "discord-tsx-postbuild ./dist"
+    "postbuild": "discord-tsx-builder-postbuild ./dist"
   }
 }
 ```
@@ -75,7 +75,7 @@ Suggested scripts in consumer project:
 TSX is converted to object payloads when code executes.
 
 ```tsx
-import { DiscordEmbed, Title, Description } from "discord-tsx";
+import { DiscordEmbed, Title, Description } from "discord-tsx-builder";
 
 const name = "World";
 const embed = (
@@ -90,7 +90,7 @@ const embed = (
 
 ## Tag reference
 
-All tags are exported from `discord-tsx`.
+All tags are exported from `discord-tsx-builder`.
 
 ### Embed root
 
@@ -257,13 +257,13 @@ See full usage in:
 You do not need Babel config in your app.
 
 - Your app still builds with `tsc` (or your normal TS pipeline).
-- `discord-tsx` runtime mode needs no Babel.
-- `discord-tsx-postbuild` internally uses Babel parser/traverse/generator APIs to parse emitted JS and rewrite only the Discord TSX runtime call trees.
-- Those Babel packages are regular runtime dependencies of `discord-tsx`, so running the CLI in another project works after install.
+- `discord-tsx-builder` runtime mode needs no Babel.
+- `discord-tsx-builder-postbuild` internally uses Babel parser/traverse/generator APIs to parse emitted JS and rewrite only the Discord TSX runtime call trees.
+- Those Babel packages are regular runtime dependencies of `discord-tsx-builder`, so running the CLI in another project works after install.
 
 So: no `.babelrc`, no Babel plugin setup, no manual AST wiring in your project.
 
-## Comparison (raw JSON vs builders vs discord-tsx)
+## Comparison (raw JSON vs builders vs discord-tsx-builder)
 
 See:
 

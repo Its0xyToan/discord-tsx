@@ -1,5 +1,5 @@
 /* @jsxRuntime automatic */
-/* @jsxImportSource discord-tsx */
+/* @jsxImportSource discord-tsx-builder */
 
 import {
   ActionRow,
@@ -39,7 +39,7 @@ import {
   Title,
   Url,
   UserSelectMenu
-} from "discord-tsx";
+} from "discord-tsx-builder";
 
 const username = "World";
 
@@ -51,7 +51,7 @@ export const embedShowcase = (
     <Timestamp>2026-02-27T12:00:00.000Z</Timestamp>
     <Color>#ffffff</Color>
     <Author>
-      <AuthorName>discord-tsx</AuthorName>
+      <AuthorName>discord-tsx-builder</AuthorName>
       <AuthorIconUrl>https://picsum.photos/96/96</AuthorIconUrl>
       <AuthorUrl>https://github.com</AuthorUrl>
     </Author>

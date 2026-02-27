@@ -170,9 +170,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"discord-tsx@workspace:.":
+"discord-tsx-builder@workspace:.":
   version: 0.0.0-use.local
-  resolution: "discord-tsx@workspace:."
+  resolution: "discord-tsx-builder@workspace:."
   dependencies:
     "@babel/generator": "npm:^7.28.0"
     "@babel/parser": "npm:^7.28.0"
@@ -183,7 +183,7 @@ __metadata:
     "@types/node": "npm:^22.15.30"
     typescript: "npm:^5.8.3"
   bin:
-    discord-tsx-postbuild: dist/scripts/postbuild.js
+    discord-tsx-builder-postbuild: dist/scripts/postbuild.js
   languageName: unknown
   linkType: soft
 
