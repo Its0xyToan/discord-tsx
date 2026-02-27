@@ -1,5 +1,7 @@
 # discord-tsx
 
+![alt text](./assets/banner.png "DiscordTsx Banner")
+
 Represent Discord Embeds and Components using TSX instead of raw JSON or long builder chains.
 
 ## Install
@@ -115,38 +117,49 @@ Supported children:
 ### Embed tags
 
 `<Title>`:
+
 - Children text -> `title`
 
 `<Description>`:
+
 - Children text -> `description`
 
 `<Url>`:
+
 - `url` prop or children text -> `url`
 
 `<Timestamp>`:
+
 - `value` prop or children text -> `timestamp`
 
 `<Color>`:
+
 - `value` prop or children text -> `color` (hex strings are converted to int)
 
 `<Image>`:
+
 - `url` prop or children text -> `image.url`
 
 `<Thumbnail>` (inside embed):
+
 - `url` or `src` prop or children text -> `thumbnail.url`
 
 `<Author>`:
+
 - Props: `name`, `iconUrl` (`icon_url` also accepted), `url`
 - Children alternatives: `<AuthorName>`, `<AuthorIconUrl>`, `<AuthorUrl>`
 
 `<Footer>`:
+
 - Props: `text`, `iconUrl` (`icon_url` also accepted)
 - Children alternatives: `<FooterText>`, `<FooterIconUrl>`
 
 `<Fields>`:
+
 - Grouping wrapper for `<Field>`
 
 `<Field>`:
+
 - Props: `name`, `value`, `inline`
 - Or children: `<FieldName>`, `<FieldValue>`
 - Requires both name and value
@@ -164,56 +177,69 @@ If you are setting components in a response, set the components and the flags se
 ### Legacy components
 
 `<ActionRow>`:
+
 - Children: interactive components only (`<Button>` or any select menu)
 - Select rule: a select menu must be the only child in the row
 - Button rule: max 5 buttons in the row
 
 `<Button>`:
+
 - Props: `customId`, `style`, `label`, `emoji`, `url`, `disabled`, `skuId`
 - If `label` is omitted, children text becomes label
 - `style` accepts number or one of: `primary`, `secondary`, `success`, `danger`, `link`, `premium`
 
 `<StringSelectMenu>`:
+
 - Props: `customId`, `placeholder`, `minValues`, `maxValues`, `disabled`
 - Options can come from `options` prop array or `<Option>` children
 
 `<UserSelectMenu>`, `<RoleSelectMenu>`, `<MentionableSelectMenu>`, `<ChannelSelectMenu>`:
+
 - Props: `customId`, `placeholder`, `minValues`, `maxValues`, `disabled`, `defaultValues`
 - `<ChannelSelectMenu>` also supports `channelTypes`
 
 `<Option>`:
+
 - Props: `label`, `value`, `description`, `emoji`, `default`
 - Used by `<StringSelectMenu>`
 
 ### V2 components
 
 `<Container>`:
+
 - Props: `accentColor` (`accent_color` also accepted), `spoiler`
 - Children supported: `<Text>`, `<Section>`, `<MediaGallery>`, `<File>`, `<Separator>`, `<ActionRow>`, `<Button>`, select menus
 - If `<Button>`/select appears directly, it is wrapped into an action row automatically
 
 `<Text>`:
+
 - Children text -> `{ type: 10, content: ... }`
 
 `<Section>`:
+
 - Needs at least one text block
 - Text via direct text, `<Text>`, or `<SectionText>`
 - Accessory via `<SectionAccessory>` with one child: `<Button>` or `<Thumbnail>`
 
 `<Thumbnail>` (inside section accessory or top-level v2):
+
 - Props: `url` or `src`, optional `description`, `spoiler`
 
 `<MediaGallery>`:
+
 - Props: `items` array (optional)
 - Or `<MediaItem>` children
 
 `<MediaItem>`:
+
 - Props: `url` or `src`, optional `description`, `spoiler`
 
 `<File>`:
+
 - Props: `url` or `src`
 
 `<Separator>`:
+
 - Props: `divider`, `spacing`
 
 ### Top-level children allowed in `<DiscordComponent>`
@@ -266,3 +292,4 @@ yarn test:runtime
 yarn test:build
 yarn test
 ```
+
