@@ -34,7 +34,7 @@
     }
   },
   "bin": {
-    "discord-tsx-postbuild": "./dist/scripts/postbuild.js"
+    "discord-tsx-postbuild": "dist/scripts/postbuild.js"
   },
   "files": [
     "dist"
