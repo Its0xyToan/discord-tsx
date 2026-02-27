@@ -5,6 +5,10 @@
   "license": "MIT",
   "author": "OxyToan <xyz.oxytoan@gmail.com> (https://github.com/Its0xyToan)",
   "homepage": "https://github.com/Its0xyToan/discord-tsx#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Its0xyToan/discord-tsx.git"
+  },
   "keywords": [
     "discord",
     "discord-js",
