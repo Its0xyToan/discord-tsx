@@ -41,6 +41,10 @@ yarn add discord-tsx-builder
 
 `moduleResolution: "nodenext"` (or `node16`/`bundler`) is important so `discord-tsx-builder/jsx-runtime` resolves correctly.
 
+## Postbuild vs Runtime Speed
+For the same, exactly same code, we got these results
+![alt text](./assets/chart.png "speed chart")
+
 ## Postbuild mode (Highly Recommended)
 
 After `tsc`, run the transformer:
@@ -70,7 +74,7 @@ Suggested scripts in consumer project:
 }
 ```
 
-## Runtime mode
+## Runtime mode (Not recommended)
 
 TSX is converted to object payloads when code executes.
 
