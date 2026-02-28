@@ -11,6 +11,8 @@ test("postbuild: rewrites compiled JSX calls to plain payload objects", async ()
   const inputFile = path.join(tempDir, "fixture.js");
 
   const compiledLikeInput = `import { jsx as _jsx, jsxs as _jsxs } from "discord-tsx-builder/jsx-runtime";
+/* @jsxRuntime automatic */
+/* @jsxImportSource discord-tsx-builder */
 import { DiscordEmbed, Description, DiscordComponent, Text } from "discord-tsx-builder";
 const name = "World";
 export const embed = _jsx(DiscordEmbed, {
@@ -34,6 +36,9 @@ export const components = _jsx(DiscordComponent, {
     assert.match(output, /content:\s*"hello"/);
     assert.doesNotMatch(output, /export const embed = _jsx\(/);
     assert.doesNotMatch(output, /export const components = _jsx\(/);
+    assert.doesNotMatch(output, /from "discord-tsx-builder\/jsx-runtime"/);
+    assert.doesNotMatch(output, /@jsxRuntime/);
+    assert.doesNotMatch(output, /@jsxImportSource/);
   } finally {
     await rm(tempDir, { recursive: true, force: true });
   }

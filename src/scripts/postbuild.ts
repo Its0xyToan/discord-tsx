@@ -57,6 +57,13 @@ function hasDiscordRuntimeImport(source: string): boolean {
   return source === "discord-tsx-builder/jsx-runtime" || source.endsWith("/discord-tsx-builder/jsx-runtime");
 }
 
+function isJsxRuntimeSpecifier(specifier: t.ImportSpecifier): boolean {
+  return (
+    t.isIdentifier(specifier.imported) &&
+    (specifier.imported.name === "jsx" || specifier.imported.name === "jsxs" || specifier.imported.name === "jsxDEV")
+  );
+}
+
 function collectState(program: t.Program): TransformState {
   const jsxCallees = new Set<string>();
   const tagLocals = new Map<string, string>();
@@ -90,6 +97,64 @@ function collectState(program: t.Program): TransformState {
   }
 
   return { jsxCallees, tagLocals };
+}
+
+function cleanupDiscordRuntimeArtifacts(ast: t.File): void {
+  const pragmaMatcher = /@jsxRuntime|@jsxImportSource/;
+  const referencedNames = new Set<string>();
+
+  traverseAst(ast, {
+    Identifier(path) {
+      if (path.isReferencedIdentifier()) {
+        referencedNames.add(path.node.name);
+      }
+    }
+  });
+
+  traverseAst(ast, {
+    ImportDeclaration(path) {
+      if (!hasDiscordRuntimeImport(path.node.source.value)) {
+        return;
+      }
+
+      const keptSpecifiers = path.node.specifiers.filter((specifier) => {
+        if (!t.isImportSpecifier(specifier) || !isJsxRuntimeSpecifier(specifier)) {
+          return true;
+        }
+
+        return referencedNames.has(specifier.local.name);
+      });
+
+      if (keptSpecifiers.length === 0) {
+        path.remove();
+        return;
+      }
+
+      path.node.specifiers = keptSpecifiers;
+    }
+  });
+
+  ast.comments = (ast.comments ?? []).filter((comment) => !pragmaMatcher.test(comment.value));
+
+  traverseAst(ast, {
+    enter(path) {
+      const node = path.node as t.Node & {
+        leadingComments?: t.Comment[] | null;
+        trailingComments?: t.Comment[] | null;
+        innerComments?: t.Comment[] | null;
+      };
+
+      if (node.leadingComments) {
+        node.leadingComments = node.leadingComments.filter((comment) => !pragmaMatcher.test(comment.value));
+      }
+      if (node.trailingComments) {
+        node.trailingComments = node.trailingComments.filter((comment) => !pragmaMatcher.test(comment.value));
+      }
+      if (node.innerComments) {
+        node.innerComments = node.innerComments.filter((comment) => !pragmaMatcher.test(comment.value));
+      }
+    }
+  });
 }
 
 function expressionFromArrayElement(
@@ -885,6 +950,8 @@ function transformFileContents(sourceCode: string, filePath: string): string {
       }
     }
   });
+
+  cleanupDiscordRuntimeArtifacts(ast);
 
   const output = generateCode(ast, {
     retainLines: true,
