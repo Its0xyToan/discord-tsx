@@ -1,4 +1,5 @@
 # discord-tsx-builder
+![npm version](https://img.shields.io/npm/v/discord-tsx-builder)
 
 ![alt text](./assets/banner.png "DiscordTsx Banner")
 
